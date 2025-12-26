@@ -1,11 +1,11 @@
--- [[ SYNIOX PUBLIC - RGB BORDER EDITION ]]
+-- [[ SYNIOX PUBLIC - MODERN WIDE HUB VERSION ]]
 
 local _0x53796e696f78 = "Syniox-X-Yusuf"
 local _0x536372697074 = "\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\83\121\110\105\111\120\83\116\117\100\105\111\115\47\83\121\110\105\111\120\80\117\98\108\105\99\45\66\101\115\116\72\117\98\45\66\101\115\116\83\67\45\89\117\115\117\102\68\101\118\47\114\101\102\115\47\104\101\97\100\115\47\109\97\105\110\47\83\121\110\105\111\120\80\117\98\108\105\99\46\116\120\116"
 
 local ScreenGui = Instance.new("ScreenGui")
-local RGBBorder = Instance.new("Frame") -- RGB Kenar Çerçevesi
-local MainFrame = Instance.new("Frame") -- Siyah İç Ekran
+local RGBBorder = Instance.new("Frame")
+local MainFrame = Instance.new("Frame")
 local KeyInput = Instance.new("TextBox")
 local SubmitBtn = Instance.new("TextButton")
 local GetKeyBtn = Instance.new("TextButton")
@@ -13,33 +13,33 @@ local Title = Instance.new("TextLabel")
 
 ScreenGui.Parent = game:GetService("CoreGui")
 
--- RGB KENAR (Dış Çerçeve)
+-- RGB KENAR (Yayık Dikdörtgen: 504x254)
 RGBBorder.Name = "RGBBorder"
 RGBBorder.Parent = ScreenGui
 RGBBorder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-RGBBorder.Position = UDim2.new(0.5, -151, 0.5, -151)
-RGBBorder.Size = UDim2.new(0, 302, 0, 302) -- İçeridekine göre her yönden 1px büyük
-Instance.new("UICorner", RGBBorder).CornerRadius = UDim.new(0, 12)
+RGBBorder.Position = UDim2.new(0.5, -252, 0.5, -127)
+RGBBorder.Size = UDim2.new(0, 504, 0, 254)
+Instance.new("UICorner", RGBBorder).CornerRadius = UDim.new(0, 10)
 
--- SİYAH İÇ PANEL
+-- ANA PANEL (Saf Siyah: 500x250)
 MainFrame.Name = "MainFrame"
 MainFrame.Parent = RGBBorder
-MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Saf Siyah
-MainFrame.Position = UDim2.new(0, 1, 0, 1) -- Kenarı 1px ince göstermek için
-MainFrame.Size = UDim2.new(0, 300, 0, 300)
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.Position = UDim2.new(0, 2, 0, 2)
+MainFrame.Size = UDim2.new(0, 500, 0, 250)
 MainFrame.Active = true
 MainFrame.Draggable = true 
-Instance.new("UICorner", MainFrame).CornerRadius = UDim.new(0, 11)
+Instance.new("UICorner", MainFrame).CornerRadius = UDim.new(0, 8)
 
--- RGB EFEKTİ DÖNGÜSÜ (Sadece Kenar İçin)
+-- RGB DÖNGÜSÜ
 spawn(function()
     while task.wait() do
-        local hue = tick() % 5 / 5
+        local hue = tick() % 4 / 4
         RGBBorder.BackgroundColor3 = Color3.fromHSV(hue, 1, 1)
     end
 end)
 
--- Sürükleme Mantığı (Kenarla beraber hareket etmesi için)
+-- Sürükleme Mantığı
 local UserInputService = game:GetService("UserInputService")
 local dragging, dragStart, startPos
 MainFrame.InputBegan:Connect(function(input)
@@ -57,19 +57,20 @@ MainFrame.InputEnded:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then dragging = false end
 end)
 
--- [[ UI ELEMENTLERİ ]] --
+-- [[ UI ELEMENTLERİ - HUB TARZI ]] --
 
 Title.Parent = MainFrame
 Title.Text = "SYNIOX PUBLIC"
-Title.Size = UDim2.new(1, 0, 0, 60)
-Title.TextColor3 = Color3.fromRGB(0, 170, 255)
+Title.Size = UDim2.new(1, 0, 0, 50)
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1
 Title.Font = Enum.Font.GothamBold
-Title.TextSize = 22
+Title.TextSize = 24
 
+-- Key Input (Geniş)
 KeyInput.Parent = MainFrame
-KeyInput.PlaceholderText = "ENTER KEY..."
-KeyInput.Position = UDim2.new(0.1, 0, 0.3, 0)
+KeyInput.PlaceholderText = "ENTER KEY HERE..."
+KeyInput.Position = UDim2.new(0.1, 0, 0.25, 0)
 KeyInput.Size = UDim2.new(0.8, 0, 0, 45)
 KeyInput.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 KeyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -77,20 +78,22 @@ KeyInput.Font = Enum.Font.GothamMedium
 KeyInput.TextSize = 16
 Instance.new("UICorner", KeyInput)
 
+-- Submit Button (Mavi)
 SubmitBtn.Parent = MainFrame
 SubmitBtn.Text = "SUBMIT KEY"
-SubmitBtn.Position = UDim2.new(0.1, 0, 0.52, 0)
-SubmitBtn.Size = UDim2.new(0.8, 0, 0, 50)
-SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+SubmitBtn.Position = UDim2.new(0.1, 0, 0.5, 0)
+SubmitBtn.Size = UDim2.new(0.8, 0, 0, 45)
+SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
 SubmitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 SubmitBtn.Font = Enum.Font.GothamBold
 SubmitBtn.TextSize = 18
 Instance.new("UICorner", SubmitBtn)
 
+-- Get Key Button (Discord Moru)
 GetKeyBtn.Parent = MainFrame
 GetKeyBtn.Text = "GET KEY"
-GetKeyBtn.Position = UDim2.new(0.1, 0, 0.75, 0)
-GetKeyBtn.Size = UDim2.new(0.8, 0, 0, 45)
+GetKeyBtn.Position = UDim2.new(0.1, 0, 0.73, 0)
+GetKeyBtn.Size = UDim2.new(0.8, 0, 0, 40)
 GetKeyBtn.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
 GetKeyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 GetKeyBtn.Font = Enum.Font.GothamBold
@@ -109,6 +112,11 @@ SubmitBtn.MouseButton1Click:Connect(function()
         SubmitBtn.Text = "INVALID!"
         SubmitBtn.BackgroundColor3 = Color3.fromRGB(231, 76, 60)
         KeyInput.Text = ""
-        task.wait(1); SubmitBtn.Text = "SUBMIT KEY"; SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+        task.wait(1); SubmitBtn.Text = "SUBMIT KEY"; SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
     end
+end)
+
+GetKeyBtn.MouseButton1Click:Connect(function()
+    if setclipboard then setclipboard("https://discord.gg/FsG2cGay") GetKeyBtn.Text = "COPIED!" else GetKeyBtn.Text = "FAILED" end
+    task.wait(1.5); GetKeyBtn.Text = "GET KEY"
 end)
