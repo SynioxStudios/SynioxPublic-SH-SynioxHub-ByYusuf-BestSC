@@ -1,4 +1,4 @@
--- [[ SYNIOX PUBLIC - CLEAN VERSION ]]
+-- [[ SYNIOX PUBLIC - NO RGB CLEAN VERSION ]]
 
 local _0x53796e696f78 = "Syniox-X-Yusuf"
 local _0x536372697074 = "\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\83\121\110\105\111\120\83\116\117\100\105\111\115\47\83\121\110\105\111\120\80\117\98\108\105\99\45\66\101\115\116\72\117\98\45\66\101\115\116\83\67\45\89\117\115\117\102\68\101\118\47\114\101\102\115\47\104\101\97\100\115\47\109\97\105\110\47\83\121\110\105\111\120\80\117\98\108\105\99\46\116\120\116"
@@ -9,48 +9,54 @@ local KeyInput = Instance.new("TextBox")
 local SubmitBtn = Instance.new("TextButton")
 local GetKeyBtn = Instance.new("TextButton")
 local Title = Instance.new("TextLabel")
+local UIStroke = Instance.new("UIStroke") -- Kenarlık için yeni yöntem
 
 ScreenGui.Parent = game:GetService("CoreGui")
 
--- ANA PANEL (Yayık Dikdörtgen: 450x220 - Sabit Mavi Kenarlı)
-MainFrame.Name = "Syniox_Main"
+-- ANA PANEL (Sabit Boyut ve Renk)
+MainFrame.Name = "MainFrame"
 MainFrame.Parent = ScreenGui
-MainFrame.BackgroundColor3 = Color3.fromRGB(10, 10, 10) -- Arka Plan Siyah
-MainFrame.BorderColor3 = Color3.fromRGB(0, 170, 255) -- Kenarlar Sabit Mavi
-MainFrame.BorderSizePixel = 2
-MainFrame.Position = UDim2.new(0.5, -225, 0.5, -110)
-MainFrame.Size = UDim2.new(0, 450, 0, 220)
+MainFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15) -- Safa yakın siyah
+MainFrame.Position = UDim2.new(0.5, -200, 0.5, -100)
+MainFrame.Size = UDim2.new(0, 400, 0, 200) -- İdeal Hub boyutu
 MainFrame.Active = true
 MainFrame.Draggable = true 
 
+-- Köşe Yuvarlama
 local UICorner = Instance.new("UICorner", MainFrame)
 UICorner.CornerRadius = UDim.new(0, 10)
 
--- [[ UI ELEMENTLERI ]] --
+-- SABİT MAVİ KENARLIK (RGB Değil!)
+UIStroke.Parent = MainFrame
+UIStroke.Color = Color3.fromRGB(0, 170, 255) -- Sabit Mavi
+UIStroke.Thickness = 2
+UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+-- [[ UI ELEMENTLERİ ]] --
 
 Title.Parent = MainFrame
 Title.Text = "SYNIOX PUBLIC"
-Title.Size = UDim2.new(1, 0, 0, 45)
+Title.Size = UDim2.new(1, 0, 0, 40)
 Title.TextColor3 = Color3.fromRGB(0, 170, 255)
 Title.BackgroundTransparency = 1
 Title.Font = Enum.Font.GothamBold
-Title.TextSize = 22
+Title.TextSize = 20
 
 KeyInput.Parent = MainFrame
-KeyInput.PlaceholderText = "ENTER KEY..."
-KeyInput.Position = UDim2.new(0.1, 0, 0.3, 0)
-KeyInput.Size = UDim2.new(0.8, 0, 0, 40)
-KeyInput.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+KeyInput.PlaceholderText = "ENTER KEY HERE..."
+KeyInput.Position = UDim2.new(0.1, 0, 0.25, 0)
+KeyInput.Size = UDim2.new(0.8, 0, 0, 35)
+KeyInput.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 KeyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
 KeyInput.Font = Enum.Font.GothamMedium
-KeyInput.TextSize = 16
+KeyInput.TextSize = 14
 Instance.new("UICorner", KeyInput)
 
 SubmitBtn.Parent = MainFrame
 SubmitBtn.Text = "SUBMIT KEY"
-SubmitBtn.Position = UDim2.new(0.1, 0, 0.53, 0)
+SubmitBtn.Position = UDim2.new(0.1, 0, 0.5, 0)
 SubmitBtn.Size = UDim2.new(0.8, 0, 0, 40)
-SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
 SubmitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 SubmitBtn.Font = Enum.Font.GothamBold
 SubmitBtn.TextSize = 16
@@ -58,7 +64,7 @@ Instance.new("UICorner", SubmitBtn)
 
 GetKeyBtn.Parent = MainFrame
 GetKeyBtn.Text = "GET KEY"
-GetKeyBtn.Position = UDim2.new(0.1, 0, 0.76, 0)
+GetKeyBtn.Position = UDim2.new(0.1, 0, 0.75, 0)
 GetKeyBtn.Size = UDim2.new(0.8, 0, 0, 35)
 GetKeyBtn.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
 GetKeyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -66,7 +72,7 @@ GetKeyBtn.Font = Enum.Font.GothamBold
 GetKeyBtn.TextSize = 14
 Instance.new("UICorner", GetKeyBtn)
 
--- [[ MANTIK ]] --
+-- [[ MANTIK SİSTEMİ ]] --
 
 SubmitBtn.MouseButton1Click:Connect(function()
     if KeyInput.Text == _0x53796e696f78 then
@@ -81,7 +87,7 @@ SubmitBtn.MouseButton1Click:Connect(function()
         KeyInput.Text = ""
         task.wait(2)
         SubmitBtn.Text = "SUBMIT KEY"
-        SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+        SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
     end
 end)
 
