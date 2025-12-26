@@ -1,103 +1,92 @@
--- [[ SYNIOX PUBLIC - FINAL SOURCE ]]
--- Key: Syniox-X-Yusuf
+-- [[ SYNIOX PROTECTED SOURCE ]] --
+local _0x53796e696f78 = "Syniox-X-Yusuf"
+local _0x4c6f6164 = "\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\83\121\110\105\111\120\83\116\117\100\105\111\115\47\83\121\110\105\111\120\80\117\98\108\105\99\45\66\101\115\116\72\117\98\45\66\101\115\116\83\67\45\89\117\115\117\102\68\101\118\47\114\101\102\115\47\104\101\97\100\115\47\109\97\105\110\47\83\121\110\105\111\120\80\117\98\108\105\99\46\116\120\116"
 
-local _0xKey = "Syniox-X-Yusuf"
+local _0xR = game:GetService("\67\111\114\101\71\117\105")
+local _0xS = Instance.new("ScreenGui", _0xR)
+local _0xM = Instance.new("Frame", _0xS)
+local _0xI = Instance.new("TextBox", _0xM)
+local _0xB = Instance.new("TextButton", _0xM)
+local _0xG = Instance.new("TextButton", _0xM)
+local _0xT = Instance.new("TextLabel", _0xM)
 
-local ScreenGui = Instance.new("ScreenGui")
-local MainFrame = Instance.new("Frame")
-local KeyInput = Instance.new("TextBox")
-local SubmitBtn = Instance.new("TextButton")
-local GetKeyBtn = Instance.new("TextButton")
-local Title = Instance.new("TextLabel")
-local UIStroke = Instance.new("UIStroke")
+-- UI Styling
+_0xM.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+_0xM.Position = UDim2.new(0.5, -200, 0.5, -100)
+_0xM.Size = UDim2.new(0, 400, 0, 200)
+_0xM.Active = true
+_0xM.Draggable = true
+Instance.new("UICorner", _0xM).CornerRadius = UDim.new(0, 10)
+local _0xSt = Instance.new("UIStroke", _0xM)
+_0xSt.Color = Color3.fromRGB(0, 170, 255)
+_0xSt.Thickness = 2
 
--- UI Ayarları (Resimdeki gibi sade ve yayık)
-ScreenGui.Parent = game:GetService("CoreGui")
-MainFrame.Name = "Syniox_Main"
-MainFrame.Parent = ScreenGui
-MainFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-MainFrame.Position = UDim2.new(0.5, -200, 0.5, -100)
-MainFrame.Size = UDim2.new(0, 400, 0, 200)
-MainFrame.Active = true
-MainFrame.Draggable = true 
+_0xT.Text = "SYNIOX PUBLIC"
+_0xT.Size = UDim2.new(1, 0, 0, 45)
+_0xT.TextColor3 = Color3.fromRGB(0, 170, 255)
+_0xT.BackgroundTransparency = 1
+_0xT.Font = Enum.Font.GothamBold
+_0xT.TextSize = 22
 
-Instance.new("UICorner", MainFrame).CornerRadius = UDim.new(0, 10)
+_0xI.PlaceholderText = "ENTER KEY..."
+_0xI.Position = UDim2.new(0.1, 0, 0.3, 0)
+_0xI.Size = UDim2.new(0.8, 0, 0, 40)
+_0xI.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+_0xI.TextColor3 = Color3.fromRGB(255, 255, 255)
+_0xI.Font = Enum.Font.GothamMedium
+_0xI.TextSize = 16
+Instance.new("UICorner", _0xI)
 
-UIStroke.Parent = MainFrame
-UIStroke.Color = Color3.fromRGB(0, 170, 255)
-UIStroke.Thickness = 2
-UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+_0xB.Text = "SUBMIT KEY"
+_0xB.Position = UDim2.new(0.1, 0, 0.53, 0)
+_0xB.Size = UDim2.new(0.8, 0, 0, 40)
+_0xB.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+_0xB.TextColor3 = Color3.fromRGB(255, 255, 255)
+_0xB.Font = Enum.Font.GothamBold
+_0xB.TextSize = 16
+Instance.new("UICorner", _0xB)
 
--- Başlık
-Title.Parent = MainFrame
-Title.Text = "SYNIOX PUBLIC"
-Title.Size = UDim2.new(1, 0, 0, 45)
-Title.TextColor3 = Color3.fromRGB(0, 170, 255)
-Title.BackgroundTransparency = 1
-Title.Font = Enum.Font.GothamBold
-Title.TextSize = 22
+_0xG.Text = "GET KEY"
+_0xG.Position = UDim2.new(0.1, 0, 0.76, 0)
+_0xG.Size = UDim2.new(0.8, 0, 0, 35)
+_0xG.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
+_0xG.TextColor3 = Color3.fromRGB(255, 255, 255)
+_0xG.Font = Enum.Font.GothamBold
+_0xG.TextSize = 14
+Instance.new("UICorner", _0xG)
 
--- Key Kutusu
-KeyInput.Parent = MainFrame
-KeyInput.PlaceholderText = "ENTER KEY..."
-KeyInput.Position = UDim2.new(0.1, 0, 0.3, 0)
-KeyInput.Size = UDim2.new(0.8, 0, 0, 40)
-KeyInput.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-KeyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
-KeyInput.Font = Enum.Font.GothamMedium
-KeyInput.TextSize = 16
-Instance.new("UICorner", KeyInput)
+-- Encryption Logic
+local function _0xExecute()
+    local _0xSuccess, _0xError = pcall(function()
+        loadstring(game:HttpGet(_0x4c6f6164))()
+    end)
+end
 
--- Onay Butonu
-SubmitBtn.Parent = MainFrame
-SubmitBtn.Text = "SUBMIT KEY"
-SubmitBtn.Position = UDim2.new(0.1, 0, 0.53, 0)
-SubmitBtn.Size = UDim2.new(0.8, 0, 0, 40)
-SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
-SubmitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-SubmitBtn.Font = Enum.Font.GothamBold
-SubmitBtn.TextSize = 16
-Instance.new("UICorner", SubmitBtn)
-
--- Key Alma
-GetKeyBtn.Parent = MainFrame
-GetKeyBtn.Text = "GET KEY"
-GetKeyBtn.Position = UDim2.new(0.1, 0, 0.76, 0)
-GetKeyBtn.Size = UDim2.new(0.8, 0, 0, 35)
-GetKeyBtn.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
-GetKeyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-GetKeyBtn.Font = Enum.Font.GothamBold
-GetKeyBtn.TextSize = 14
-Instance.new("UICorner", GetKeyBtn)
-
--- ANA MANTIK (Yeni Loadstring Burada)
-SubmitBtn.MouseButton1Click:Connect(function()
-    if KeyInput.Text == _0xKey then
-        SubmitBtn.Text = "ACCESS GRANTED!"
-        SubmitBtn.BackgroundColor3 = Color3.fromRGB(46, 204, 113)
+_0xB.MouseButton1Click:Connect(function()
+    if _0xI.Text == _0x53796e696f78 then
+        _0xB.Text = "ACCESS GRANTED!"
+        _0xB.BackgroundColor3 = Color3.fromRGB(46, 204, 113)
         task.wait(1)
-        ScreenGui:Destroy()
-        
-        -- Senin verdiğin yeni script linki
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/SynioxStudios/SynioxPublic-BestHub-BestSC-YusufDev/refs/heads/main/SynioxPublic.txt"))()
+        _0xS:Destroy()
+        _0xExecute()
     else
-        SubmitBtn.Text = "INVALID KEY!"
-        SubmitBtn.BackgroundColor3 = Color3.fromRGB(231, 76, 60)
-        KeyInput.Text = ""
+        _0xB.Text = "INVALID KEY!"
+        _0xB.BackgroundColor3 = Color3.fromRGB(231, 76, 60)
+        _0xI.Text = ""
         task.wait(1)
-        SubmitBtn.Text = "SUBMIT KEY"
-        SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+        _0xB.Text = "SUBMIT KEY"
+        _0xB.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
     end
 end)
 
-GetKeyBtn.MouseButton1Click:Connect(function()
+_0xG.MouseButton1Click:Connect(function()
     if setclipboard then 
         setclipboard("https://discord.gg/FsG2cGay") 
-        GetKeyBtn.Text = "LINK COPIED!" 
+        _0xG.Text = "LINK COPIED!" 
     else 
-        GetKeyBtn.Text = "FAILED" 
+        _0xG.Text = "FAILED" 
     end
     task.wait(1.5)
-    GetKeyBtn.Text = "GET KEY"
+    _0xG.Text = "GET KEY"
 end)
 
