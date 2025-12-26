@@ -1,7 +1,7 @@
 -- [[ SYNIOX PUBLIC - BEST HUB ON TOP ]]
 
 local Key = "Syniox-X-Yusuf"
-local ScriptURL = "https://raw.githubusercontent.com/SynioxStudios/SynioxPublic-BestHub-BestSC-YusufDev/refs/heads/main/SynioxPublic.txt"
+local ScriptURL = "loadstring(game:HttpGet("https://raw.githubusercontent.com/SynioxStudios/SynioxPublic-BestHub-BestSC-YusufDev/refs/heads/main/SynioxPublic.txt"))()"
 
 local ScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
