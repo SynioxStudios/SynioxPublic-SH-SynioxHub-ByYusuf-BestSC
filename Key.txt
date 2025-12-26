@@ -85,7 +85,7 @@ SubmitBtn.MouseButton1Click:Connect(function()
         SubmitBtn.Text = "INVALID!"
         SubmitBtn.BackgroundColor3 = Color3.fromRGB(231, 76, 60)
         KeyInput.Text = ""
-        task.wait(2)
+        task.wait(1.3)
         SubmitBtn.Text = "SUBMIT KEY"
         SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
     end
