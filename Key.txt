@@ -1,0 +1,32 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Syniox Studios | Muscle Legends",
+   LoadingTitle = "Syniox Hub Yükleniyor...",
+   LoadingSubtitle = "YusufDev Tarafından Geliştirildi",
+   ConfigurationSaving = {
+      Enabled = false
+   },
+   KeySystem = true,
+   KeySettings = {
+      Title = "Erişim Anahtarı",
+      Subtitle = "Key Almak İçin Discord'a Katılın",
+      Note = "Discord: discord.gg/FsG2cGay",
+      FileName = "SynioxKeyConfig",
+      SaveKey = true, 
+      GrabKeyFromSite = true,
+      -- GitHub Raw Linkin aşağıdadır:
+      Key = {"https://raw.githubusercontent.com/SynioxStudios/SynioxPublic-SH-SynioxHub-ByYusuf-BestSC/main/key.txt"} 
+   }
+})
+
+-- KEY DOĞRULANDIĞINDA ÇALIŞACAK BİLDİRİM
+Rayfield:Notify({
+   Title = "BAŞARILI!",
+   Content = "Key onaylandı. İyi eğlenceler, YusufDev!",
+   Duration = 5,
+   Image = 4483362458,
+})
+
+-- SENİN ASIL EXPLOIT SCRIPTİN
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SynioxStudios/SynioxPublic-BestHub-BestSC-YusufDev/refs/heads/main/SynioxPublic.txt"))()
