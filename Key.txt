@@ -1,152 +1,114 @@
--- [[ SYNIOX PUBLIC - RGB PREMIUM EDITION ]]
+-- [[ SYNIOX PUBLIC - RGB BORDER EDITION ]]
 
 local _0x53796e696f78 = "Syniox-X-Yusuf"
 local _0x536372697074 = "\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\83\121\110\105\111\120\83\116\117\100\105\111\115\47\83\121\110\105\111\120\80\117\98\108\105\99\45\66\101\115\116\72\117\98\45\66\101\115\116\83\67\45\89\117\115\117\102\68\101\118\47\114\101\102\115\47\104\101\97\100\115\47\109\97\105\110\47\83\121\110\105\111\120\80\117\98\108\105\99\46\116\120\116"
 
 local ScreenGui = Instance.new("ScreenGui")
-local OuterFrame = Instance.new("Frame") -- RGB Kenar için dış çerçeve
-local MainFrame = Instance.new("Frame")
+local RGBBorder = Instance.new("Frame") -- RGB Kenar Çerçevesi
+local MainFrame = Instance.new("Frame") -- Siyah İç Ekran
 local KeyInput = Instance.new("TextBox")
 local SubmitBtn = Instance.new("TextButton")
 local GetKeyBtn = Instance.new("TextButton")
 local Title = Instance.new("TextLabel")
-local SubTitle = Instance.new("TextLabel")
 
--- GUI Parent
 ScreenGui.Parent = game:GetService("CoreGui")
 
--- RGB DIŞ ÇERÇEVE (Kenar efekti buradan gelir)
-OuterFrame.Name = "RGB_Border"
-OuterFrame.Parent = ScreenGui
-OuterFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- Bu renk sürekli değişecek
-OuterFrame.Position = UDim2.new(0.5, -227, 0.5, -252) -- MainFrame'den 2px daha geniş
-OuterFrame.Size = UDim2.new(0, 454, 0, 504) -- Kenar kalınlığı 2px
-Instance.new("UICorner", OuterFrame).CornerRadius = UDim.new(0, 26)
+-- RGB KENAR (Dış Çerçeve)
+RGBBorder.Name = "RGBBorder"
+RGBBorder.Parent = ScreenGui
+RGBBorder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+RGBBorder.Position = UDim2.new(0.5, -151, 0.5, -151)
+RGBBorder.Size = UDim2.new(0, 302, 0, 302) -- İçeridekine göre her yönden 1px büyük
+Instance.new("UICorner", RGBBorder).CornerRadius = UDim.new(0, 12)
 
--- ANA EKRAN (Siyah İç Kısım)
-MainFrame.Name = "Syniox_Main"
-MainFrame.Parent = OuterFrame
-MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- TAM SİYAH
-MainFrame.Position = UDim2.new(0, 2, 0, 2) -- Kenarı göstermek için içeride durur
-MainFrame.Size = UDim2.new(0, 450, 0, 500)
+-- SİYAH İÇ PANEL
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = RGBBorder
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Saf Siyah
+MainFrame.Position = UDim2.new(0, 1, 0, 1) -- Kenarı 1px ince göstermek için
+MainFrame.Size = UDim2.new(0, 300, 0, 300)
 MainFrame.Active = true
-MainFrame.Draggable = true -- RGB kenarla birlikte sürüklenmesi için OuterFrame'e bağlı değil, koda eklenmeli (aşağıda)
-Instance.new("UICorner", MainFrame).CornerRadius = UDim.new(0, 25)
+MainFrame.Draggable = true 
+Instance.new("UICorner", MainFrame).CornerRadius = UDim.new(0, 11)
 
--- RGB DÖNGÜSÜ (Arka planda çalışır)
+-- RGB EFEKTİ DÖNGÜSÜ (Sadece Kenar İçin)
 spawn(function()
-	while task.wait() do
-		local hue = tick() % 5 / 5 -- 5 saniyede bir tam tur döner
-		local color = Color3.fromHSV(hue, 1, 1)
-		OuterFrame.BackgroundColor3 = color
-	end
+    while task.wait() do
+        local hue = tick() % 5 / 5
+        RGBBorder.BackgroundColor3 = Color3.fromHSV(hue, 1, 1)
+    end
 end)
 
--- Sürükleme Mantığı (OuterFrame'i hareket ettirir)
+-- Sürükleme Mantığı (Kenarla beraber hareket etmesi için)
 local UserInputService = game:GetService("UserInputService")
-local dragging, dragInput, dragStart, startPos
-
+local dragging, dragStart, startPos
 MainFrame.InputBegan:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-		dragging = true
-		dragStart = input.Position
-		startPos = OuterFrame.Position
-	end
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true; dragStart = input.Position; startPos = RGBBorder.Position
+    end
 end)
-
 UserInputService.InputChanged:Connect(function(input)
-	if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
-		local delta = input.Position - dragStart
-		OuterFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-	end
+    if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+        local delta = input.Position - dragStart
+        RGBBorder.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
 end)
-
 MainFrame.InputEnded:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-		dragging = false
-	end
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then dragging = false end
 end)
 
--- [[ ELEMENTLER ]] --
+-- [[ UI ELEMENTLERİ ]] --
 
--- Main Title
 Title.Parent = MainFrame
 Title.Text = "SYNIOX PUBLIC"
-Title.Size = UDim2.new(1, 0, 0, 100)
+Title.Size = UDim2.new(1, 0, 0, 60)
 Title.TextColor3 = Color3.fromRGB(0, 170, 255)
 Title.BackgroundTransparency = 1
 Title.Font = Enum.Font.GothamBold
-Title.TextSize = 38
+Title.TextSize = 22
 
--- Subtitle
-SubTitle.Parent = MainFrame
-SubTitle.Text = "MUSCLE LEGENDS PREMIUM SCRIPT"
-SubTitle.Position = UDim2.new(0, 0, 0, 75)
-SubTitle.Size = UDim2.new(1, 0, 0, 30)
-SubTitle.TextColor3 = Color3.fromRGB(150, 150, 150)
-SubTitle.BackgroundTransparency = 1
-SubTitle.Font = Enum.Font.Gotham
-SubTitle.TextSize = 16
-
--- Key Input
 KeyInput.Parent = MainFrame
-KeyInput.PlaceholderText = "ENTER KEY HERE..."
-KeyInput.Position = UDim2.new(0.1, 0, 0.35, 0)
-KeyInput.Size = UDim2.new(0.8, 0, 0, 65)
+KeyInput.PlaceholderText = "ENTER KEY..."
+KeyInput.Position = UDim2.new(0.1, 0, 0.3, 0)
+KeyInput.Size = UDim2.new(0.8, 0, 0, 45)
 KeyInput.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 KeyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
 KeyInput.Font = Enum.Font.GothamMedium
-KeyInput.TextSize = 20
-Instance.new("UICorner", KeyInput).CornerRadius = UDim.new(0, 12)
+KeyInput.TextSize = 16
+Instance.new("UICorner", KeyInput)
 
--- Submit Button
 SubmitBtn.Parent = MainFrame
 SubmitBtn.Text = "SUBMIT KEY"
-SubmitBtn.Position = UDim2.new(0.1, 0, 0.55, 0)
-SubmitBtn.Size = UDim2.new(0.8, 0, 0, 75)
+SubmitBtn.Position = UDim2.new(0.1, 0, 0.52, 0)
+SubmitBtn.Size = UDim2.new(0.8, 0, 0, 50)
 SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
 SubmitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 SubmitBtn.Font = Enum.Font.GothamBold
-SubmitBtn.TextSize = 22
-Instance.new("UICorner", SubmitBtn).CornerRadius = UDim.new(0, 15)
+SubmitBtn.TextSize = 18
+Instance.new("UICorner", SubmitBtn)
 
--- Get Key Button
 GetKeyBtn.Parent = MainFrame
 GetKeyBtn.Text = "GET KEY"
-GetKeyBtn.Position = UDim2.new(0.1, 0, 0.78, 0)
-GetKeyBtn.Size = UDim2.new(0.8, 0, 0, 60)
+GetKeyBtn.Position = UDim2.new(0.1, 0, 0.75, 0)
+GetKeyBtn.Size = UDim2.new(0.8, 0, 0, 45)
 GetKeyBtn.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
 GetKeyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 GetKeyBtn.Font = Enum.Font.GothamBold
-GetKeyBtn.TextSize = 20
-Instance.new("UICorner", GetKeyBtn).CornerRadius = UDim.new(0, 15)
+GetKeyBtn.TextSize = 16
+Instance.new("UICorner", GetKeyBtn)
 
---- [[ LOGIC ]] ---
-
+-- [[ MANTIK ]] --
 SubmitBtn.MouseButton1Click:Connect(function()
-	if KeyInput.Text == _0x53796e696f78 then
-		SubmitBtn.Text = "ACCESS GRANTED!"
-		SubmitBtn.BackgroundColor3 = Color3.fromRGB(46, 204, 113)
-		task.wait(1.5)
-		ScreenGui:Destroy()
-		loadstring(game:HttpGet(_0x536372697074))()
-	else
-		SubmitBtn.Text = "INVALID KEY!"
-		SubmitBtn.BackgroundColor3 = Color3.fromRGB(231, 76, 60)
-		KeyInput.Text = ""
-		task.wait(1.5)
-		SubmitBtn.Text = "SUBMIT KEY"
-		SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
-	end
-end)
-
-GetKeyBtn.MouseButton1Click:Connect(function()
-	if setclipboard then
-		setclipboard("https://discord.gg/FsG2cGay")
-		GetKeyBtn.Text = "LINK COPIED!"
-	else
-		GetKeyBtn.Text = "COPY FAILED"
-	end
-	task.wait(2)
-	GetKeyBtn.Text = "GET KEY"
+    if KeyInput.Text == _0x53796e696f78 then
+        SubmitBtn.Text = "SUCCESS!"
+        SubmitBtn.BackgroundColor3 = Color3.fromRGB(46, 204, 113)
+        task.wait(1)
+        ScreenGui:Destroy()
+        loadstring(game:HttpGet(_0x536372697074))()
+    else
+        SubmitBtn.Text = "INVALID!"
+        SubmitBtn.BackgroundColor3 = Color3.fromRGB(231, 76, 60)
+        KeyInput.Text = ""
+        task.wait(1); SubmitBtn.Text = "SUBMIT KEY"; SubmitBtn.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+    end
 end)
