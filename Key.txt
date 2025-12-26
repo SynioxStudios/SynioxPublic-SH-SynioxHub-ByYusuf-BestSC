@@ -9,7 +9,7 @@ local KeyInput = Instance.new("TextBox")
 local SubmitBtn = Instance.new("TextButton")
 local GetKeyBtn = Instance.new("TextButton")
 local Title = Instance.new("TextLabel")
-local UIStroke = Instance.new("UIStroke") -- Kenarlık için yeni yöntem
+local UIStroke = Instance.new("UIStroke") -- Kenarlar
 
 ScreenGui.Parent = game:GetService("CoreGui")
 
@@ -22,17 +22,17 @@ MainFrame.Size = UDim2.new(0, 400, 0, 200) -- İdeal Hub boyutu
 MainFrame.Active = true
 MainFrame.Draggable = true 
 
--- Köşe Yuvarlama
+-- Köşe Yuvarlakları
 local UICorner = Instance.new("UICorner", MainFrame)
 UICorner.CornerRadius = UDim.new(0, 10)
 
--- SABİT MAVİ KENARLIK (RGB Değil!)
+-- SABİT MAVİ KENARLIK (Köşelerdeki)
 UIStroke.Parent = MainFrame
 UIStroke.Color = Color3.fromRGB(0, 170, 255) -- Sabit Mavi
 UIStroke.Thickness = 2
 UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
--- [[ UI ELEMENTLERİ ]] --
+-- [[ UI ELEMENTİ ]] --
 
 Title.Parent = MainFrame
 Title.Text = "SYNIOX PUBLIC"
@@ -72,7 +72,7 @@ GetKeyBtn.Font = Enum.Font.GothamBold
 GetKeyBtn.TextSize = 14
 Instance.new("UICorner", GetKeyBtn)
 
--- [[ MANTIK SİSTEMİ ]] --
+-- [[ SİSTEMİN MANTIĞI]] --
 
 SubmitBtn.MouseButton1Click:Connect(function()
     if KeyInput.Text == _0x53796e696f78 then
